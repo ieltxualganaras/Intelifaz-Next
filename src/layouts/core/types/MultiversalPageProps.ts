@@ -1,5 +1,4 @@
 import { ApolloState } from '@/modules/core/apollo/apolloClient';
-import { I18nextResources } from '@/modules/core/i18n/i18nextLocize';
 
 /**
  * Page properties available on all pages, whether they're rendered statically, dynamically, from the server or the client

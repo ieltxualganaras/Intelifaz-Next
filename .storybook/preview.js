@@ -23,12 +23,8 @@ import { userSessionContext } from '@/modules/core/userSession/userSessionContex
 import { getAmplitudeInstance } from '@/modules/core/amplitude/amplitude';
 import '@/common/utils/ignoreNoisyWarningsHacks';
 import { initCustomerTheme } from '@/modules/core/theming/theme';
-import i18nextLocize from '@/modules/core/i18n/i18nextLocize';
 import '@/modules/core/fontAwesome/fontAwesome';
 import dataset from './mock/sb-dataset';
-
-// Loads translations from local file cache (Locize)
-const i18nTranslations = require('./.sb-translations.cache.json');
 
 /**
  * Story Global parameters for Storybook.
@@ -173,11 +169,6 @@ export const decorators = [
     // Configure i18n. In Storybook, the locale can be set from the top Toolbar.
     const locale = context?.globals?.locale || defaultLocale;
     const lang = getLangFromLocale(locale);
-
-    // Applies i18next configuration with Locize backend
-    // Extra features like saveMissing, etc. will be disabled in production because Storybook doesn't have access to NEXT_PUBLIC_* environment variables there
-    // Although, they are configured in the same way as the Next.js app during development mode
-    i18nextLocize(lang, i18nTranslations);
 
     const customer = find(dataset, { __typename: 'Customer' });
     const customerTheme = initCustomerTheme(customer);

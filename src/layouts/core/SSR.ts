@@ -13,10 +13,6 @@ import {
   resolveFallbackLanguage,
   SUPPORTED_LANGUAGES,
 } from '@/modules/core/i18n/i18n';
-import {
-  fetchTranslations,
-  I18nextResources,
-} from '@/modules/core/i18n/i18nextLocize';
 import { isQuickPreviewRequest } from '@/modules/core/quickPreview/quickPreview';
 import { UserSemiPersistentSession } from '@/modules/core/userSession/types/UserSemiPersistentSession';
 import {
