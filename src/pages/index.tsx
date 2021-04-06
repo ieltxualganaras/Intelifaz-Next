@@ -23,12 +23,6 @@ const logger = createLogger({ // eslint-disable-line no-unused-vars,@typescript-
 });
 
 /**
- * Only executed on the server side at build time
- * Necessary when a page has dynamic routes and uses "getStaticProps"
- */
-export const getStaticPaths: GetStaticPaths<CommonServerSideParams> = getDefaultStaticPaths;
-
-/**
  * Only executed on the server side at build time.
  *
  * @return Props (as "SSGPageProps") that will be passed to the Page component, as props
