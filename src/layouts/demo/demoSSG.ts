@@ -93,7 +93,6 @@ export const getDemoStaticProps: GetStaticProps<SSGPageProps, CommonServerSidePa
   const lang: string = locale.split('-')?.[0];
   const bestCountryCodes: string[] = [lang, resolveFallbackLanguage(lang)];
   const gcmsLocales: string = prepareGraphCMSLocaleHeader(bestCountryCodes);
-  const i18nTranslations: I18nextResources = await fetchTranslations(lang); // Pre-fetches translations from Locize API
   const apolloClient: ApolloClient<NormalizedCacheObject> = initializeApollo();
   const variables = {
     customerRef,
@@ -139,7 +138,6 @@ export const getDemoStaticProps: GetStaticProps<SSGPageProps, CommonServerSidePa
       bestCountryCodes,
       serializedDataset: serializeSafe(dataset),
       customerRef,
-      i18nTranslations,
       gcmsLocales,
       hasLocaleFromUrl,
       isReadyToRender: true,

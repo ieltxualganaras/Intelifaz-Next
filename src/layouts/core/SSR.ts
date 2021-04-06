@@ -97,7 +97,6 @@ export const getCoreServerSideProps: GetServerSideProps<GetCoreServerSidePropsRe
   const lang: string = locale.split('-')?.[0];
   const bestCountryCodes: string[] = [lang, resolveFallbackLanguage(lang)];
   const gcmsLocales: string = prepareGraphCMSLocaleHeader(bestCountryCodes);
-  const i18nTranslations: I18nextResources = await fetchTranslations(lang); // Pre-fetches translations from Locize API
   const apolloClient: ApolloClient<NormalizedCacheObject> = initializeApollo();
   const variables = {
     customerRef,
@@ -121,7 +120,6 @@ export const getCoreServerSideProps: GetServerSideProps<GetCoreServerSidePropsRe
       bestCountryCodes,
       serializedDataset: null, // We don't send the dataset yet (we don't have any because we haven't fetched the database yet), but it must be done by SSR pages in"getServerSideProps"
       customerRef,
-      i18nTranslations,
       headers: publicHeaders,
       gcmsLocales,
       hasLocaleFromUrl,

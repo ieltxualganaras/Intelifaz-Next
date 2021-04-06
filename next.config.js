@@ -74,7 +74,6 @@ module.exports = withBundleAnalyzer(withSourceMaps({
     GITHUB_DISPATCH_TOKEN: process.env.GITHUB_DISPATCH_TOKEN,
     GRAPHQL_API_ENDPOINT: process.env.GRAPHQL_API_ENDPOINT,
     GRAPHQL_API_KEY: process.env.GRAPHQL_API_KEY,
-    LOCIZE_API_KEY: process.env.LOCIZE_API_KEY,
     SENTRY_DSN: process.env.SENTRY_DSN,
 
     // Dynamic env variables

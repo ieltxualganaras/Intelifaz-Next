@@ -96,7 +96,7 @@ const MultiversalAppBootstrap: React.FunctionComponent<Props> = (props): JSX.Ele
     } = router;
     const {
       serializedDataset, // Size might be too big
-      i18nTranslations, // Size might be too big
+       // Size might be too big
       ...restPageProps
     } = pageProps; // XXX Exclude all non-meaningful props that might be too large for Sentry to handle, to avoid "403 Entity too large"
     const serializedDatasetLength = (serializedDataset || '').length;
@@ -148,7 +148,6 @@ const MultiversalAppBootstrap: React.FunctionComponent<Props> = (props): JSX.Ele
 
     const {
       serializedDataset,
-      i18nTranslations,
       lang,
       locale,
     }: SSGPageProps | SSRPageProps = pageProps;
@@ -299,7 +298,7 @@ const MultiversalAppBootstrap: React.FunctionComponent<Props> = (props): JSX.Ele
       isQuickPreviewPage = pageProps?.isQuickPreviewPage;
     }
 
-    if (!customer || !i18nTranslations || !lang || !locale) {
+    if (!customer || !lang || !locale) {
       let error = props.err || null;
 
       // Unrecoverable error, we can't even display the layout because we don't have the minimal required information to properly do so
@@ -344,7 +343,6 @@ const MultiversalAppBootstrap: React.FunctionComponent<Props> = (props): JSX.Ele
       });
     }
 
-    const i18nextInstance: i18n = i18nextLocize(lang, i18nTranslations); // Apply i18next configuration with Locize backend
     const customerTheme: CustomerTheme = initCustomerTheme(customer);
 
     /*
@@ -373,7 +371,6 @@ const MultiversalAppBootstrap: React.FunctionComponent<Props> = (props): JSX.Ele
         router,
         pageProps: {
           ...pageProps,
-          i18nextInstance,
           isSSGFallbackInitialBuild: isSSGFallbackInitialBuild,
           customerTheme,
         },
@@ -384,7 +381,6 @@ const MultiversalAppBootstrap: React.FunctionComponent<Props> = (props): JSX.Ele
         router,
         pageProps: {
           ...pageProps,
-          i18nextInstance,
           isSSGFallbackInitialBuild: isSSGFallbackInitialBuild,
           customerTheme,
         },

@@ -15,7 +15,6 @@ export type MultiversalPageProps<E extends {} = {}> = {
   error?: Error; // Only defined if there was an error
   gcmsLocales: string;
   hasLocaleFromUrl: boolean;
-  i18nTranslations: I18nextResources;
   isReadyToRender: boolean;
   lang: string;
   locale: string;
