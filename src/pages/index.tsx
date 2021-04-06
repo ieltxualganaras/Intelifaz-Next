@@ -3,15 +3,11 @@ import { OnlyBrowserPageProps } from '@/layouts/core/types/OnlyBrowserPageProps'
 import { SSGPageProps } from '@/layouts/core/types/SSGPageProps';
 import DefaultLayout from '@/layouts/default/components/DefaultLayout';
 import {
-  getDefaultStaticPaths,
   getDefaultStaticProps,
 } from '@/layouts/default/defaultSSG';
 import { AMPLITUDE_PAGES } from '@/modules/core/amplitude/amplitude';
-import useCustomer from '@/modules/core/data/hooks/useCustomer';
-import { Customer } from '@/modules/core/data/types/Customer';
 import { createLogger } from '@unly/utils-simple-logger';
 import {
-  GetStaticPaths,
   GetStaticProps,
   NextPage,
 } from 'next';
@@ -43,7 +39,6 @@ export const getStaticProps: GetStaticProps<SSGPageProps, CommonServerSideParams
 type Props = {} & SSGPageProps<Partial<OnlyBrowserPageProps>>;
 
 const PageTemplateSSG: NextPage<Props> = (props): JSX.Element => {
-  const customer: Customer = useCustomer();
 
   return (
     <DefaultLayout
@@ -55,7 +50,7 @@ const PageTemplateSSG: NextPage<Props> = (props): JSX.Element => {
         It gets common page properties from a default SSG build. Dynamic data (from GraphCMS) are accessible through <code>props.customer</code>.
       </p>
       <p>
-        Customer label: {customer.label}
+        Customer label:
       </p>
     </DefaultLayout>
   );
