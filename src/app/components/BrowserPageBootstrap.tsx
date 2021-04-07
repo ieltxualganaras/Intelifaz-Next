@@ -56,7 +56,7 @@ const BrowserPageBootstrap = (props: BrowserPageBootstrapProps): JSX.Element => 
   // When the page is served by the browser, some browser-only properties are available
   const pageProps = props.pageProps as unknown as MultiversalPageProps<OnlyBrowserPageProps>;
   const {
-    // customerRef,
+    customerRef,
     lang,
     locale,
   } = pageProps;
