@@ -123,15 +123,15 @@ module.exports = withBundleAnalyzer(withSourceMaps({
   async rewrites() {
     const rewrites = [
       // I18n rewrites
-      {
-        // XXX Doesn't work locally (maybe because of rewrites), but works online
-        source: '/',
-        destination: '/api/autoRedirectToLocalisedPage',
-      },
-      {
-        source: `/:locale((?!${noRedirectBasePaths.join('|')})[^/]+)(.*)`,
-        destination: '/api/autoRedirectToLocalisedPage',
-      },
+      // {
+      //   // XXX Doesn't work locally (maybe because of rewrites), but works online
+      //   source: '/',
+      //   destination: '/api/autoRedirectToLocalisedPage',
+      // },
+      // {
+      //   source: `/:locale((?!${noRedirectBasePaths.join('|')})[^/]+)(.*)`,
+      //   destination: '/api/autoRedirectToLocalisedPage',
+      // },
 
       // Robots rewrites
       {
