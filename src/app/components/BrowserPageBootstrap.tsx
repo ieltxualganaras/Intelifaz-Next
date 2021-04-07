@@ -56,7 +56,7 @@ const BrowserPageBootstrap = (props: BrowserPageBootstrapProps): JSX.Element => 
   // When the page is served by the browser, some browser-only properties are available
   const pageProps = props.pageProps as unknown as MultiversalPageProps<OnlyBrowserPageProps>;
   const {
-    customerRef,
+    // customerRef,
     lang,
     locale,
   } = pageProps;
@@ -96,7 +96,7 @@ const BrowserPageBootstrap = (props: BrowserPageBootstrapProps): JSX.Element => 
     hasUserGivenAnyCookieConsent,
   } = userConsent;
   const amplitudeInstance: AmplitudeClient = getAmplitudeInstance({
-    customerRef,
+    // customerRef,
     iframeReferrer,
     isInIframe,
     lang,
@@ -164,9 +164,9 @@ const BrowserPageBootstrap = (props: BrowserPageBootstrapProps): JSX.Element => 
             origin: location.origin,
             name: null, // XXX Will be set by the page (usually through its layout)
           },
-          customer: {
-            ref: customerRef,
-          },
+          // customer: {
+          //   ref: customerRef,
+          // },
           lang: lang,
           locale: locale,
           iframe: isInIframe,
