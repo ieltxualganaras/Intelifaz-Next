@@ -42,7 +42,7 @@ export enum AMPLITUDE_PAGES {
 }
 
 type GetAmplitudeInstanceProps = {
-  customerRef: string;
+  customerRef?: string;
   iframeReferrer: string;
   isInIframe: boolean;
   lang: string;
