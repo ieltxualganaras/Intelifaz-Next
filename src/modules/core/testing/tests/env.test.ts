@@ -82,6 +82,8 @@ describe(`utils/env/env.ts`, () => {
     });
 
     test(`GRAPHQL_API_ENDPOINT`, async () => {
+      console.log(process.env.GRAPHQL_API_KEY)
+      console.log(process.env.GRAPHQL_API_ENDPOINT)
       expect(process.env.GRAPHQL_API_ENDPOINT, 'GRAPHQL_API_ENDPOINT must be defined but is not').toBeDefined();
     });
 
