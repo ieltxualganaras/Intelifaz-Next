@@ -6,6 +6,8 @@ import {
   getDefaultStaticProps,
 } from '@/layouts/default/defaultSSG';
 import { AMPLITUDE_PAGES } from '@/modules/core/amplitude/amplitude';
+import useCustomer from '@/modules/core/data/hooks/useCustomer';
+import { Customer } from '@/modules/core/data/types/Customer';
 import { createLogger } from '@unly/utils-simple-logger';
 import {
   GetStaticProps,
@@ -39,6 +41,7 @@ export const getStaticProps: GetStaticProps<SSGPageProps, CommonServerSideParams
 type Props = {} & SSGPageProps<Partial<OnlyBrowserPageProps>>;
 
 const PageTemplateSSG: NextPage<Props> = (props): JSX.Element => {
+  const customer: Customer = useCustomer();
 
   return (
     <DefaultLayout
@@ -47,10 +50,10 @@ const PageTemplateSSG: NextPage<Props> = (props): JSX.Element => {
     >
       <p>
         This page is a template meant to be duplicated to quickly get started with new Next.js <b>SSG pages</b>.<br />
-        It gets common page properties from a default SSG build. Dynamic data (from GraphCMS) are accessible through <code>props.customer</code>.
+        It gets common page properties from a default SSG build. Dynamic data (from GraphCMS) are accessible through <code>{props.customerRef}</code>.
       </p>
       <p>
-        Customer label:
+        Customer label: { customer.label }
       </p>
     </DefaultLayout>
   );
