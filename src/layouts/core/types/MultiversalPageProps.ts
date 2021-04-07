@@ -9,8 +9,8 @@ import { ApolloState } from '@/modules/core/apollo/apolloClient';
  */
 export type MultiversalPageProps<E extends {} = {}> = {
   bestCountryCodes: string[];
-  // serializedDataset: string; // Transferred from server to browser as JSON (using Flatten.stringify), then parsed on the browser/server within the MultiversalAppBootstrap
-  // customerRef: string;
+  serializedDataset: string; // Transferred from server to browser as JSON (using Flatten.stringify), then parsed on the browser/server within the MultiversalAppBootstrap
+  customerRef: string;
   error?: Error; // Only defined if there was an error
   gcmsLocales: string;
   hasLocaleFromUrl: boolean;

@@ -2,13 +2,13 @@ import { CommonServerSideParams } from '@/app/types/CommonServerSideParams';
 import { StaticPath } from '@/app/types/StaticPath';
 import { StaticPathsOutput } from '@/app/types/StaticPathsOutput';
 import { StaticPropsInput } from '@/app/types/StaticPropsInput';
-// import { LAYOUT_QUERY } from '@/common/gql/layoutQuery';
+import { LAYOUT_QUERY } from '@/common/gql/layoutQuery';
 import {
   APOLLO_STATE_PROP_NAME,
   getApolloState,
   initializeApollo,
 } from '@/modules/core/apollo/apolloClient';
-// import { Customer } from '@/modules/core/data/types/Customer';
+import { Customer } from '@/modules/core/data/types/Customer';
 import { prepareGraphCMSLocaleHeader } from '@/modules/core/gql/graphcms';
 import {
   DEFAULT_LOCALE,
@@ -17,10 +17,10 @@ import {
 import { supportedLocales } from '@/modules/core/i18n/i18nConfig';
 import { I18nLocale } from '@/modules/core/i18n/types/I18nLocale';
 import { PreviewData } from '@/modules/core/previewMode/types/PreviewData';
-// import serializeSafe from '@/modules/core/serializeSafe/serializeSafe';
+import serializeSafe from '@/modules/core/serializeSafe/serializeSafe';
 import {
   ApolloClient,
-  // ApolloQueryResult,
+  ApolloQueryResult,
   NormalizedCacheObject,
 } from '@apollo/client';
 import map from 'lodash.map';
@@ -81,7 +81,7 @@ export const getCoreStaticPaths: GetStaticPaths<CommonServerSideParams> = async 
  * @see https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation
  */
 export const getCoreStaticProps: GetStaticProps<SSGPageProps, CommonServerSideParams> = async (props: StaticPropsInput): Promise<GetStaticPropsResult<SSGPageProps>> => {
-  // const customerRef: string = process.env.NEXT_PUBLIC_CUSTOMER_REF;
+  const customerRef: string = process.env.NEXT_PUBLIC_CUSTOMER_REF;
   const preview: boolean = props?.preview || false;
   const previewData: PreviewData = props?.previewData || null;
   const hasLocaleFromUrl = !!props?.params?.locale;
@@ -90,50 +90,50 @@ export const getCoreStaticProps: GetStaticProps<SSGPageProps, CommonServerSidePa
   const bestCountryCodes: string[] = [lang, resolveFallbackLanguage(lang)];
   const gcmsLocales: string = prepareGraphCMSLocaleHeader(bestCountryCodes);
   const apolloClient: ApolloClient<NormalizedCacheObject> = initializeApollo();
-  // const variables = {
-  //   customerRef,
-  // };
-  // const queryOptions = {
-  //   displayName: 'LAYOUT_QUERY',
-  //   query: LAYOUT_QUERY,
-  //   variables,
-  //   context: {
-  //     headers: {
-  //       'gcms-locales': gcmsLocales,
-  //     },
-  //   },
-  // };
+  const variables = {
+    customerRef,
+  };
+  const queryOptions = {
+    displayName: 'LAYOUT_QUERY',
+    query: LAYOUT_QUERY,
+    variables,
+    context: {
+      headers: {
+        'gcms-locales': gcmsLocales,
+      },
+    },
+  };
 
-  // const {
-  //   data,
-  //   errors,
-  //   loading,
-  //   networkStatus,
-  //   ...rest
-  // }: ApolloQueryResult<{
-  //   customer: Customer;
-  // }> = await apolloClient.query(queryOptions);
+  const {
+    data,
+    errors,
+    loading,
+    networkStatus,
+    ...rest
+  }: ApolloQueryResult<{
+    customer: Customer;
+  }> = await apolloClient.query(queryOptions);
 
-  // if (errors) {
-  //   // eslint-disable-next-line no-console
-  //   console.error(errors);
-  //   throw new Error('Errors were detected in GraphQL query.');
-  // }
+  if (errors) {
+    // eslint-disable-next-line no-console
+    console.error(errors);
+    throw new Error('Errors were detected in GraphQL query.');
+  }
 
-  // const {
-  //   customer,
-  // } = data || {}; // XXX Use empty object as fallback, to avoid app crash when destructuring, if no data is returned
-  // const dataset = {
-  //   customer,
-  // };
+  const {
+    customer,
+  } = data || {}; // XXX Use empty object as fallback, to avoid app crash when destructuring, if no data is returned
+  const dataset = {
+    customer,
+  };
 
   return {
     // Props returned here will be available as page properties (pageProps)
     props: {
       [APOLLO_STATE_PROP_NAME]: getApolloState(apolloClient),
       bestCountryCodes,
-      // serializedDataset: serializeSafe(dataset),
-      // customerRef,
+      serializedDataset: serializeSafe(dataset),
+      customerRef,
       gcmsLocales,
       hasLocaleFromUrl,
       isReadyToRender: true,
